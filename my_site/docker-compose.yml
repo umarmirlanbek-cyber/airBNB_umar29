@@ -8,7 +8,7 @@ services:
       bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 my_site.wsgi:application"
     volumes:
       - .:/app
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
       - media_volume:/app/media
     ports:
       - "8000:8000"
@@ -30,7 +30,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
       - media_volume:/app/media
     depends_on:
       - web
